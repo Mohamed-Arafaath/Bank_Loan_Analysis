@@ -7,71 +7,111 @@ An in-depth Power BI dashboard designed to analyze bank loan data from January 1
 ## 📊 Dashboard Overview
 
 ### Features:
-1. **Summary Page**:
+1. **Dynamic Filters**:
+   - Filters for **Measure**, **Month**, **Day**, **State**, **Loan Grade**, **Loan Purpose**, **Home Ownership**, and **Good vs Bad Loans**.
+   - Current screenshots depict all months and days selected, meaning all calculations represent the **Year-to-Date (YTD)** range from January 1, 2021, to December 31, 2021.
+
+2. **Summary Page**:
    - Overview of **Good Loans vs Bad Loans**:
-     - Good Loan Count, Funded, and Repaid Amounts.
-     - Bad Loan Count, Funded, and Repaid Amounts.
-   - Loan Status Breakdown: Charged Off, Fully Paid, and Current.
+     - Key metrics for **Good Loan Count**, **Funded Amount**, and **Repaid Amount**.
+     - Insights into **Bad Loan Count**, **Funded Amount**, and **Repaid Amount**.
+   - Loan Status Breakdown: **Charged Off**, **Fully Paid**, and **Current** loans.
    - Dynamic calculations for **Year-to-Date (YTD)**, **Month-to-Date (MTD)**, **Previous Month-to-Date (PMTD)**, and **Month-over-Month (MoM)** growth.
 
-2. **Overview Page**:
-   - Time-series trends of **Total Loan Applications by Month**.
-   - Loan Applications by State, Purpose, Employment Length, and Home Ownership.
-   - Term-wise loan distribution.
+3. **Overview Page**:
+   - Visual trends of **Total Loan Applications by Month**, showcasing growth throughout the year.
+   - Heatmap analysis of loan applications by **State**.
+   - Loan Applications grouped by **Purpose**, **Employment Length**, and **Home Ownership**.
+   - Pie chart of term-wise loan distribution (36 months vs. 60 months).
 
-3. **Details Page**:
-   - Detailed tabular data for each loan:
-     - Customer ID, Purpose, Loan Grade, Term, and Ownership Status.
-     - Funded and Repaid Amounts, Average Interest Rates, and Number of Installments.
-   - Filtering options by Measure, Month, Day, State, Loan Grade, Purpose, and Ownership Status.
+4. **Details Page**:
+   - Granular loan-level data, including:
+     - **Customer ID**, **Loan Purpose**, **Loan Grade**, **Term**, and **Home Ownership**.
+     - **Funded Amount**, **Repaid Amount**, **Average Interest Rates**, and **Number of Installments**.
+   - Filter options for in-depth analysis.
 
 ---
 
 ## 📋 Key Metrics and DAX Measures
 
-The following measures dynamically compute **YTD**, **MTD**, **PMTD**, and **MoM** values for the selected filters:
+The following measures dynamically compute **YTD**, **MTD**, **PMTD**, and **MoM** values based on selected filters:
 
-### **Major Measures**
+### **Major KPIs**:
 1. **Total Loan Applications (TLA)**:
-   - YTD_TLA: Total applications from Jan 1, 2021, to Dec 31, 2021.
-   - MTD_TLA: Applications in the current month.
-   - PMTD_TLA: Applications in the previous month.
-   - MoM_TLA: Month-over-Month growth rate.
+   - **YTD_TLA**: Total applications from Jan 1, 2021, to Dec 31, 2021.
+   - **MTD_TLA**: Applications in the current month.
+   - **PMTD_TLA**: Applications in the previous month.
+   - **MoM_TLA**: Month-over-Month growth rate.
 
 2. **Total Funded Amount (TFA)**:
-   - YTD_TFA: Total amount funded from Jan 1, 2021, to Dec 31, 2021.
-   - MTD_TFA, PMTD_TFA, MoM_TFA: Derived measures.
+   - **YTD_TFA**: Total amount funded for the year.
+   - **MTD_TFA**, **PMTD_TFA**, **MoM_TFA**: Monthly metrics for detailed tracking.
 
 3. **Total Repaid Amount (TRA)**:
-   - YTD_TRA: Total amount repaid during the year.
-   - Includes breakdown of **good_loan_repayed** and **bad_loan_repayed**.
+   - **YTD_TRA**: Total amount repaid during the year.
+   - Breakdown of **Good Loans Repaid** and **Bad Loans Repaid**.
 
 4. **Average Interest Rate (AIR)**:
-   - YTD_AIR: Average interest rate for loans issued during 2021.
-   - MTD_AIR, PMTD_AIR, MoM_AIR: Derived measures.
+   - **YTD_AIR**: Average interest rate for loans issued during 2021.
+   - **MTD_AIR**, **PMTD_AIR**, **MoM_AIR**: Derived metrics.
 
 5. **Debt-to-Income Ratio (DTI)**:
-   - YTD_DTI: Average DTI for all loans in 2021.
-   - MTD_DTI, PMTD_DTI, MoM_DTI: Derived measures.
-
-Each measure dynamically adapts to selected slicers, offering **real-time insights**.
+   - **YTD_DTI**: Average DTI across all loans for the year.
+   - **MTD_DTI**, **PMTD_DTI**, **MoM_DTI**: Derived monthly metrics.
 
 ---
 
-## 📊 Dashboard
+## 📊 Dashboard Analysis
+
+### **Filters and Dynamic Metrics**:
+- The dashboard's interactivity allows users to slice and dice data based on various parameters:
+  - **Month** and **Day** filters enable analysis for specific periods.
+  - **State**, **Loan Grade**, **Purpose**, and **Home Ownership** filters provide targeted insights.
+  - **Measure Selector** dynamically updates KPIs to focus on TLA, TFA, TRA, AIR, or DTI.
+
+- The screenshots represent all months and days selected, showing **YTD metrics** for 2021. Adjusting the filters dynamically recalculates the metrics, enabling real-time insights.
+
+### **Summary Page Insights**:
+- **Good Loans** account for **86.18%**, with a total funded amount of **$370.22M** and a repaid amount of **$435.79M**.
+- **Bad Loans** constitute **13.82%**, with a funded amount of **$65.53M** and a repaid amount of **$37.28M**.
+- **Loan Status Breakdown**:
+  - **Charged Off**: $65.53M funded.
+  - **Fully Paid**: $351.36M funded.
+  - **Current**: $18.87M funded.
+
+### **Overview Page Insights**:
+- **Loan Applications by Month**:
+  - Steady growth throughout the year, peaking in December 2021.
+- **State-Wise Insights**:
+  - **California** leads with the highest loan applications.
+- **Purpose Analysis**:
+  - **Debt Consolidation** dominates as the primary loan purpose.
+- **Employment and Ownership**:
+  - Majority of loans issued to individuals with **10+ years of employment**.
+  - **Renters** account for a higher share of loan applications compared to homeowners.
+
+### **Details Page Insights**:
+- Granular data helps analyze:
+  - Individual loan performance.
+  - Funding, repayment, and interest rates per loan.
+- Filters enable drilling down into specific customer demographics or loan types.
+
+---
+
+## 📊 Screenshots of the Dashboard
 
 ### **Summary Page**
-This page provides a holistic overview of loan statuses, trends, and distribution of Good and Bad Loans.
+This page provides a comprehensive overview of loan statuses, trends, and Good vs Bad Loans.
 
 ![Summary Page](Dashboard/Summary.png)
 
 ### **Overview Page**
-An interactive visualization of trends across months, states, loan purposes, and more.
+Visualizes loan trends across time, geography, purpose, and other dimensions.
 
 ![Overview Page](Dashboard/Overview.png)
 
 ### **Details Page**
-A detailed table showing granular data for each loan, with filtering options for all key metrics.
+Tabular view of loan-level data with advanced filtering options.
 
 ![Details Page](Dashboard/Details.png)
 
@@ -93,30 +133,27 @@ A detailed table showing granular data for each loan, with filtering options for
 │   ├── Overview.png     # Screenshot of the Overview page
 │   ├── Details.png      # Screenshot of the Details page
 ├── README.md            # Project documentation
-├── DAX_Measures.md    # Full list of DAX measures with interactive navigation
+├── DAX_Measures.md      # Full list of DAX measures with formulas
 ├── Dataset/             # Original dataset (if applicable)
-```
 
 ---
 
-## 📌 Insights Derived
+##  📌 SQL Correlation and Insights
+This Power BI dashboard mirrors the insights derived from SQL analysis conducted earlier. The following alignments are observed:
 
 - **Loan Distribution**:
-  - 86.18% of loans are Good Loans, with $370.22M funded and $435.79M repaid.
-  - 13.82% of loans are Bad Loans, with $65.53M funded and $37.28M repaid.
+   - SQL insights on Good vs Bad Loans match the 86.18% vs 13.82% split shown here.
 
-- **Trends**:
-  - Loan applications steadily increased throughout the year, peaking in December 2021.
+- **Geographical Trends**:
+   - SQL queries highlighted California as the top state for loan applications, consistent with this dashboard.
 
-- **Geographical Insights**:
-  - **California** had the highest loan applications, as seen in the state-wise analysis.
+- **Debt Consolidation Dominance**:
+   - Both SQL and Power BI analyses reveal Debt Consolidation as the primary loan purpose.
 
-- **Loan Purpose**:
-  - **Debt Consolidation** was the most common loan purpose.
+- **Monthly Trends**:
+   - Steady growth observed in SQL aligns with the Power BI time-series trend.
 
-- **Financial Metrics**:
-  - The average interest rate remained consistent at **12.05%**.
-  - The Debt-to-Income Ratio (DTI) averaged at **12.05%** across all loans.
+For detailed DAX formulas used in this dashboard, refer to the DAX_Measures.md file in this repository.
 
 ---
 
