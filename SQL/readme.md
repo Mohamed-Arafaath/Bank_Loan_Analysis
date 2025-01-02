@@ -55,4 +55,4 @@ The SQL queries were carefully designed to match the analytical scope of the Pow
 
 ### 🌟 Conclusion
 
-The SQL queries serve as a robust analytical foundation for the Power BI dashboard. By ensuring consistency and reproducibility, they allow stakeholders to validate the insights derived in Power BI. For further details on the DAX measures and dynamic slicer logic in Power BI, refer to the [DAX_Measures.md](./BI/DAX_Measures.md) file.
+The SQL queries serve as a robust analytical foundation for the Power BI dashboard. By ensuring consistency and reproducibility, they allow stakeholders to validate the insights derived in Power BI. For further details on the DAX measures and dynamic slicer logic in Power BI, refer to the [DAX_Measures.md](../../BI/DAX_Measures.md) file.
