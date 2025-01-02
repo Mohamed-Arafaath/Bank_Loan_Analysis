@@ -139,7 +139,7 @@ Tabular view of loan-level data with advanced filtering options.
 ---
 
 ##  📌 SQL Correlation and Insights
-This Power BI dashboard mirrors the insights derived from SQL analysis conducted earlier. The following alignments are observed:
+This Power BI dashboard mirrors the insights derived from SQL analysis conducted earlier in `\SQL` folder. The following alignments are observed:
 
 - **Loan Distribution**:
    - SQL insights on Good vs Bad Loans match the 86.18% vs 13.82% split shown here.
