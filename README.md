@@ -1,4 +1,5 @@
 # Bank Loan Analysis
+![World Bank Logo]([https://github.com/Mohamed-Arafaath/Netflix_Analysis_SQL/blob/main/Netflix_2015_logo.svg](https://github.com/Mohamed-Arafaath/Bank_Loan_Analysis/blob/main/Dataset/world_bank_logo.png))
 
 ## Overview
 This repository provides a detailed and structured approach to analyzing bank loan data dataset for the year 2021. The objective of this project is to evaluate the performance of the bank's lending activities and generate actionable insights using four analytical tools: **SQL**, **Excel**, **Power BI**, and **Tableau**. The same dataset and problem statement are used across all tools to ensure consistency, allowing a comparative view of each tool's capabilities.
