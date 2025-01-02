@@ -63,36 +63,17 @@ Each measure dynamically adapts to selected slicers, offering **real-time insigh
 ### **Summary Page**
 This page provides a holistic overview of loan statuses, trends, and distribution of Good and Bad Loans.
 
-![Summary Page](BI/Dashboard/Summary.png)
+![Summary Page]([BI/Dashboard/Summary.png](https://github.com/Mohamed-Arafaath/Bank_Loan_Analysis/blob/main/BI/Dashboard/Summary.png))
 
 ### **Overview Page**
 An interactive visualization of trends across months, states, loan purposes, and more.
 
-![Overview Page](BI/Dashboard/Overview.png)
+![Overview Page]([BI/Dashboard/Overview.png](https://github.com/Mohamed-Arafaath/Bank_Loan_Analysis/blob/main/BI/Dashboard/Overview.png))
 
 ### **Details Page**
 A detailed table showing granular data for each loan, with filtering options for all key metrics.
 
-![Details Page](BI/Dashboard/Details.png)
-
----
-
-## 📖 How the Metrics Work
-
-```
--- The Year-to-Date (YTD) measures reflect cumulative values for the entire year (Jan 1, 2021, to Dec 31, 2021).
--- The Month-to-Date (MTD) measures show aggregated metrics for the selected month.
--- Previous Month-to-Date (PMTD) calculates the values from the previous month for comparison.
--- Month-over-Month (MoM) growth is derived as:
-MoM_Metric = 
-IF(
-    [PMTD_Metric] = "N/A" || [PMTD_Metric] = 0,
-    "N/A",
-    ([MTD_Metric] - [PMTD_Metric]) / [PMTD_Metric]
-)
-
--- These calculations are applied to Total Loan Applications (TLA), Funded Amount (TFA), Repaid Amount (TRA), Average Interest Rate (AIR), and DTI.
-```
+![Details Page]([BI/Dashboard/Details.png](https://github.com/Mohamed-Arafaath/Bank_Loan_Analysis/blob/main/BI/Dashboard/Details.png))
 
 ---
 
