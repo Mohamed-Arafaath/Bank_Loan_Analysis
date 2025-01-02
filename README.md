@@ -8,8 +8,8 @@ The core objective is to create a comprehensive Bank Loan Report that provides i
 
 Key focus areas include:
 
-1. **Total Loan Applications**: Track the number of loan applications received within a specified period, including Month-to-Date (MTD) and Month-over-Month (MoM) changes.
-2. **Total Funded Amount**: Understand the total funds disbursed, along with MTD and MoM trends.
+1. **Total Loan Applications**: Track the number of loan applications received within a specified period, including Month-to-Date (MTD), Previous-Month-to-Date (PMTD) and Month-over-Month (MoM) changes.
+2. **Total Funded Amount**: Understand the total funds disbursed, along with MTD, PMTD and MoM trends.
 3. **Total Amount Received**: Assess borrower repayments and track cash flow performance.
 4. **Average Interest Rate**: Monitor average interest rates across loans and their monthly variations.
 5. **Average Debt-to-Income Ratio (DTI)**: Analyze borrowers' financial health using average DTI values.
@@ -29,8 +29,8 @@ The repository is organized into the following folders:
 1. **`BI`**, **`Excel`**, **`SQL`**, **`Tableau`**:
    - Each folder contains the same analysis structure divided into three dashboards:
      1. **Summary Dashboard**:
-        - Includes metrics like total loan applications, funded amounts, amounts received, average interest rates, and DTI ratios.
-        - Provides MTD and MoM trends for these metrics.
+        - Includes metrics like total loan applications, funded amounts, amounts received, average interest rates, and DTI ratios AS Year-to-Date (YTD).
+        - Provides MTD, PMTD and MoM trends for these metrics.
      2. **Overview Dashboard**:
         - Visualizes trends and segmentation using various chart types:
           - Monthly trends (line charts).
