@@ -66,7 +66,7 @@ TLA = COUNT(financial_loan[id])
 ```
 
 ### YTD_TLA
-```csharp
+```dax
 YTD_TLA = 
 SWITCH(
     TRUE(),
