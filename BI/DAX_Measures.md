@@ -31,7 +31,7 @@
   - [MoM_AIR](#mom_air)
 
 - [Average DTI](#average-dti)
-  - [DTI](#dti_measure)
+  - [DTI (Measure)](#dti-measure)
   - [YTD_DTI](#ytd_dti)
   - [MTD_DTI](#mtd_dti)
   - [PMTD_DTI](#pmtd_dti)
@@ -56,15 +56,17 @@
   - [Select Measure](#select_measure)
   - [Select Measure Total](#select_measure_total)
 
-
 ---
 
 ## Total Loan Applications
 
 ### TLA
+```DAX
 TLA = COUNT(financial_loan[id])
+```
 
 ### YTD_TLA
+```DAX
 YTD_TLA = 
 SWITCH(
     TRUE(),
@@ -86,8 +88,10 @@ SWITCH(
         TOTALYTD([TLA], dates[Date]),
     TOTALYTD([TLA], dates[Date])
 )
+```
 
 ### MTD_TLA
+```DAX
 MTD_TLA = 
 COALESCE(
     SWITCH(
@@ -111,8 +115,10 @@ COALESCE(
     ),
     0
 )
+```
 
 ### PMTD_TLA
+```DAX
 PMTD_TLA = 
 COALESCE(
     SWITCH(
@@ -145,23 +151,29 @@ COALESCE(
     ),
     0
 )
+```
 
 ### MoM_TLA
+```DAX
 MoM_TLA = 
 IF(
     [PMTD_TLA] = "N/A" || [PMTD_TLA] = 0,
     "N/A",
     ([MTD_TLA] - [PMTD_TLA]) / [PMTD_TLA]
 )
+```
 
 ---
 
 ## Total Funded Amount
 
 ### TFA
+```DAX
 TFA = SUM(financial_loan[loan_amount])
+```
 
 ### YTD_TFA
+```DAX
 YTD_TFA = 
 SWITCH(
     TRUE(),
@@ -176,8 +188,10 @@ SWITCH(
         ),
     TOTALYTD([TFA], dates[Date])
 )
+```
 
 ### MTD_TFA
+```DAX
 MTD_TFA = 
 COALESCE(
     SWITCH(
@@ -198,8 +212,10 @@ COALESCE(
     ),
     0
 )
+```
 
 ### PMTD_TFA
+```DAX
 PMTD_TFA = 
 COALESCE(
     SWITCH(
@@ -226,23 +242,29 @@ COALESCE(
     ),
     0
 )
+```
 
 ### MoM_TFA
+```DAX
 MoM_TFA = 
 IF(
     [PMTD_TFA] = "N/A" || [PMTD_TFA] = 0,
     "N/A",
     ([MTD_TFA] - [PMTD_TFA]) / [PMTD_TFA]
 )
+```
 
 ---
 
 ## Total Repayed Amount
 
 ### TRA
+```DAX
 TRA = SUM(financial_loan[total_payment])
+```
 
 ### YTD_TRA
+```DAX
 YTD_TRA = 
 SWITCH(
     TRUE(),
@@ -257,8 +279,10 @@ SWITCH(
         ),
     TOTALYTD([TRA], dates[Date])
 )
+```
 
 ### MTD_TRA
+```DAX
 MTD_TRA = 
 COALESCE(
     SWITCH(
@@ -279,8 +303,10 @@ COALESCE(
     ),
     0
 )
+```
 
 ### PMTD_TRA
+```DAX
 PMTD_TRA = 
 COALESCE(
     SWITCH(
@@ -307,29 +333,39 @@ COALESCE(
     ),
     0
 )
+```
 
 ### MoM_TRA
+```DAX
 MoM_TRA = 
 IF(
     [PMTD_TRA] = "N/A" || [PMTD_TRA] = 0,
     "N/A",
     ([MTD_TRA] - [PMTD_TRA]) / [PMTD_TRA]
 )
+```
 
 ### good_loan_repayed
+```DAX
 good_loan_repayed = CALCULATE([YTD_TRA], financial_loan[Good vs Bad Loan] = "Good Loan")
+```
 
 ### bad_loan_repayed
+```DAX
 bad_loan_repayed = CALCULATE([YTD_TRA], financial_loan[Good vs Bad Loan] = "Bad Loan")
+```
 
 ---
 
 ## Average Interest Rate
 
 ### AIR
+```DAX
 AIR = AVERAGE(financial_loan[int_rate])
+```
 
 ### MTD_AIR
+```DAX
 MTD_AIR = 
 COALESCE(
     SWITCH(
@@ -350,8 +386,10 @@ COALESCE(
     ),
     0
 )
+```
 
 ### PMTD_AIR
+```DAX
 PMTD_AIR = 
 COALESCE(
     SWITCH(
@@ -378,23 +416,29 @@ COALESCE(
     ),
     0
 )
+```
 
 ### MoM_AIR
+```DAX
 MoM_AIR = 
 IF(
     [PMTD_AIR] = "N/A" || [PMTD_AIR] = 0,
     "N/A",
     ([MTD_AIR] - [PMTD_AIR]) / [PMTD_AIR]
 )
+```
 
 ---
 
 ## Average DTI
 
 ### DTI (Measure)
+```DAX
 DTI = AVERAGE(financial_loan[dti])
+```
 
 ### YTD_DTI
+```DAX
 YTD_DTI = 
 SWITCH(
     TRUE(),
@@ -409,8 +453,10 @@ SWITCH(
         ),
     TOTALYTD([DTI], dates[Date])
 )
+```
 
 ### MTD_DTI
+```DAX
 MTD_DTI = 
 COALESCE(
     SWITCH(
@@ -431,8 +477,10 @@ COALESCE(
     ),
     0
 )
+```
 
 ### PMTD_DTI
+```DAX
 PMTD_DTI = 
 COALESCE(
     SWITCH(
@@ -459,20 +507,24 @@ COALESCE(
     ),
     0
 )
+```
 
 ### MoM_DTI
+```DAX
 MoM_DTI = 
 IF(
     [PMTD_DTI] = "N/A" || [PMTD_DTI] = 0,
     "N/A",
     ([MTD_DTI] - [PMTD_DTI]) / [PMTD_DTI]
 )
+```
 
 ---
 
 ## Dynamic Titles
 
 ### DynamicTitle_term
+```DAX
 DynamicTitle_term = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -481,8 +533,10 @@ SWITCH(
     "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Term",
     "Select a Measure"
 )
+```
 
 ### DynamicTitle_state
+```DAX
 DynamicTitle_state = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -491,8 +545,10 @@ SWITCH(
     "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by State",
     "Select a Measure"
 )
+```
 
 ### DynamicTitle_purpose
+```DAX
 DynamicTitle_purpose = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -501,8 +557,10 @@ SWITCH(
     "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Purpose",
     "Select a Measure"
 )
+```
 
 ### DynamicTitle_month
+```DAX
 DynamicTitle_month = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -511,8 +569,10 @@ SWITCH(
     "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Month",
     "Select a Measure"
 )
+```
 
 ### DynamicTitle_home_own
+```DAX
 DynamicTitle_home_own = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -521,8 +581,10 @@ SWITCH(
     "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Home Ownership",
     "Select a Measure"
 )
+```
 
 ### DynamicTitle_employment_len
+```DAX
 DynamicTitle_employment_len = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -531,38 +593,52 @@ SWITCH(
     "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Employment Length",
     "Select a Measure"
 )
+```
 
 ---
 
 ## Dates Table
 
 ### dates
+```DAX
 dates = CALENDAR(MIN(financial_loan[issue_date]), MAX(financial_loan[issue_date]))
+```
 
 ### month
+```DAX
 month = FORMAT(dates[Date], "mmm")
+```
 
 ### day
+```DAX
 day = DAY(dates[Date])
+```
 
 ### month_no
+```DAX
 month_no = MONTH(dates[Date])
+```
 
 ### title
+```DAX
 title = SELECTEDVALUE(dates[month])
+```
 
 ---
 
 ## Select Measure
 
 ### Select Measure
+```DAX
 Select Measure = {
     ("TFA", NAMEOF('Total Funded Amount'[YTD_TFA]), 0),
     ("TLA", NAMEOF('Total Loan Applications'[YTD_TLA]), 1),
     ("TRA", NAMEOF('Total Repayed Amount'[YTD_TRA]), 2)
 }
+```
 
 ### Select Measure Total
+```DAX
 Select Measure Total = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -571,3 +647,4 @@ SWITCH(
     "'Total Repayed Amount'[YTD_TRA]", [TRA],
     BLANK()
 )
+```
