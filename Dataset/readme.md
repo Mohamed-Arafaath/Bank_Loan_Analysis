@@ -42,8 +42,3 @@ The project leverages domain knowledge from the banking and financial sectors to
 
 This document provides valuable context for understanding the dataset and its real-world applications.
 
-## How to Use the Dataset
-1. **Location**: The dataset is stored in this `datasets/` folder.
-2. **Analysis Tools**: Use the dataset for analysis and dashboard creation in tools like SQL, Excel, Power BI, Tableau, and others.
-3. **Documentation**: Refer to the `Terminologies in Data.docx` and `Domain Knowledge Doc.docx` for detailed information on dataset variables and domain insights.
-
