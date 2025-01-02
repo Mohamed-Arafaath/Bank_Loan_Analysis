@@ -1,7 +1,7 @@
 # Bank Loan Analysis
 
 ## Overview
-This repository provides a detailed and structured approach to analyzing bank loan data dataset for the year 2021 in the `Dataset/` folder. The objective of this project is to evaluate the performance of the bank's lending activities and generate actionable insights using four analytical tools: **SQL**, **Excel**, **Power BI**, and **Tableau**. The same dataset and problem statement are used across all tools to ensure consistency, allowing a comparative view of each tool's capabilities.
+This repository provides a detailed and structured approach to analyzing bank loan data dataset for the year 2021. The objective of this project is to evaluate the performance of the bank's lending activities and generate actionable insights using four analytical tools: **SQL**, **Excel**, **Power BI**, and **Tableau**. The same dataset and problem statement are used across all tools to ensure consistency, allowing a comparative view of each tool's capabilities.
 
 ## Problem Statement
 The core objective is to create a comprehensive Bank Loan Report that provides insights into key metrics and trends, helping the bank make data-driven decisions and monitor its loan portfolio's health. 
@@ -42,7 +42,7 @@ The repository is organized into the following folders:
         - Designed for detailed insights into borrower profiles and loan performance.
 
 2. **`Dataset`**:
-   - Includes the primary dataset `Bank_loan(2021).csv` in the `Dataset/` folder.
+   - Includes the primary dataset `Bank_loan(2021).csv`.
    - Provides raw data and terminologies required for all analyses.
 
 Each analytical tool implements these three dashboards, ensuring consistency across SQL, Excel, Power BI, and Tableau, while leveraging the strengths of each tool.
@@ -50,7 +50,7 @@ Each analytical tool implements these three dashboards, ensuring consistency acr
 ## Analysis and Insights
 ### Summary Dashboards:
 - **Applications, Funding, and Repayments**:
-  - Track total applications, funded amounts, and received amounts with MTD and MoM trends.
+  - Track total applications, funded amounts, and received amounts with MTD, PMTD and MoM trends.
 
 - **Borrower Profiles**:
   - Analyze how employment length, home ownership, and loan purpose affect lending metrics.
@@ -76,7 +76,7 @@ By maintaining the same analysis structure across tools, this repository demonst
    git clone https://github.com/Mohamed-Arafaath/Bank_Loan_Analysis.git
    ```
 
-2. Navigate to the relevant folder (`BI`, `Excel`, `SQL`, or `Tableau`) to view the analysis and dashboards created for that tool.
+2. Navigate to the relevant folder (`SQL`, `Excel`, `Power BI`, or `Tableau`) to view the analysis and dashboards created for that tool.
 
 3. Refer to the `Dataset` folder for the raw data file (`Bank_loan(2021).csv`).
 
