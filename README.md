@@ -2,7 +2,7 @@
 ![World Bank Logo](Dataset/BankOfAmerica_logo.png)
 
 ## Overview
-This repository provides a detailed and structured approach to analyzing bank loan data dataset for the year 2021. The objective of this project is to evaluate the performance of the bank's lending activities and generate actionable insights using four analytical tools: **SQL**, **Excel**, **Power BI**, and **Tableau**. The same dataset and problem statement are used across all tools to ensure consistency, allowing a comparative view of each tool's capabilities.
+This repository provides a detailed and structured approach to analyzing bank loan data for the year 2021. The objective of this project is to evaluate the performance of the bank's lending activities and generate actionable insights using four analytical tools: **SQL**, **Excel**, **Power BI**, and **Tableau**. The same dataset and problem statement are used across all tools to ensure consistency, allowing a comparative view of each tool's capabilities.
 
 ## Problem Statement
 The core objective is to create a comprehensive Bank Loan Report that provides insights into key metrics and trends, helping the bank make data-driven decisions and monitor its loan portfolio's health. 
