@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Power BI Measures with Table of Contents</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.4;
+        }
+        h1, h2, h3, h4 {
+            margin: 1em 0 0.3em;
+        }
+        .toc {
+            background: #f5f5f5;
+            padding: 1em;
+            margin-bottom: 2em;
+            border: 1px solid #ddd;
+        }
+        .toc h2 {
+            margin-top: 0;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 1em;
+        }
+        .toc li {
+            margin: 0.3em 0;
+        }
+        pre {
+            background: #f0f0f0;
+            padding: 1em;
+            overflow-x: auto;
+            border: 1px solid #ccc;
+        }
+        code {
+            font-family: Consolas, monospace;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Power BI DAX Measures</h1>
+
+<!-- Table of Contents -->
+<div class="toc">
+    <h2>Table of Contents</h2>
+    <ul>
+        <li>
+            <a href="#total-loan-applications">Total Loan Applications</a>
+            <ul>
+                <li><a href="#tla">TLA</a></li>
+                <li><a href="#ytd_tla">YTD_TLA</a></li>
+                <li><a href="#mtd_tla">MTD_TLA</a></li>
+                <li><a href="#pmtd_tla">PMTD_TLA</a></li>
+                <li><a href="#mom_tla">MoM_TLA</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#total-funded-amount">Total Funded Amount</a>
+            <ul>
+                <li><a href="#tfa">TFA</a></li>
+                <li><a href="#ytd_tfa">YTD_TFA</a></li>
+                <li><a href="#mtd_tfa">MTD_TFA</a></li>
+                <li><a href="#pmtd_tfa">PMTD_TFA</a></li>
+                <li><a href="#mom_tfa">MoM_TFA</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#total-repayed-amount">Total Repayed Amount</a>
+            <ul>
+                <li><a href="#tra">TRA</a></li>
+                <li><a href="#ytd_tra">YTD_TRA</a></li>
+                <li><a href="#mtd_tra">MTD_TRA</a></li>
+                <li><a href="#pmtd_tra">PMTD_TRA</a></li>
+                <li><a href="#mom_tra">MoM_TRA</a></li>
+                <li><a href="#good_loan_repayed">good_loan_repayed</a></li>
+                <li><a href="#bad_loan_repayed">bad_loan_repayed</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#average-interest-rate">Average Interest Rate</a>
+            <ul>
+                <li><a href="#air">AIR</a></li>
+                <li><a href="#mtd_air">MTD_AIR</a></li>
+                <li><a href="#pmtd_air">PMTD_AIR</a></li>
+                <li><a href="#mom_air">MoM_AIR</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#average-dti">Average DTI</a>
+            <ul>
+                <li><a href="#dti_measure">DTI</a></li>
+                <li><a href="#ytd_dti">YTD_DTI</a></li>
+                <li><a href="#mtd_dti">MTD_DTI</a></li>
+                <li><a href="#pmtd_dti">PMTD_DTI</a></li>
+                <li><a href="#mom_dti">MoM_DTI</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#dynamic-titles">Dynamic Titles</a>
+            <ul>
+                <li><a href="#dynamictitle_term">DynamicTitle_term</a></li>
+                <li><a href="#dynamictitle_state">DynamicTitle_state</a></li>
+                <li><a href="#dynamictitle_purpose">DynamicTitle_purpose</a></li>
+                <li><a href="#dynamictitle_month">DynamicTitle_month</a></li>
+                <li><a href="#dynamictitle_home_own">DynamicTitle_home_own</a></li>
+                <li><a href="#dynamictitle_employment_len">DynamicTitle_employment_len</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#dates-table">Dates Table</a>
+            <ul>
+                <li><a href="#dates">dates</a></li>
+                <li><a href="#month">month</a></li>
+                <li><a href="#day">day</a></li>
+                <li><a href="#month_no">month_no</a></li>
+                <li><a href="#title">title</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#select-measure">Select Measure</a>
+            <ul>
+                <li><a href="#select_measure">Select Measure</a></li>
+                <li><a href="#select_measure_total">Select Measure Total</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<!-- =========================== -->
+<!--       TOTAL LOAN APPS       -->
+<!-- =========================== -->
+<h2 id="total-loan-applications">Total Loan Applications</h2>
+
+<h3 id="tla">TLA</h3>
+<pre><code>TLA = COUNT(financial_loan[id])</code></pre>
+
+<h3 id="ytd_tla">YTD_TLA</h3>
+<pre><code>YTD_TLA = 
+SWITCH(
+    TRUE(),
+    -- Case 1: Both Month and Day slicers are "All" or not selected
+    NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+        TOTALYTD(
+            [TLA],
+            DATESBETWEEN(
+                dates[Date],
+                DATE(2021, 1, 1),
+                DATE(2021, 12, 31)
+            )
+        ),
+    -- Case 2: Month is selected, Day is not selected
+    ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+        TOTALYTD([TLA], dates[Date]),
+    -- Case 3: Month is selected, Day is selected
+    ISFILTERED(dates[Month]) && ISFILTERED(dates[Day]),
+        TOTALYTD([TLA], dates[Date]),
+    TOTALYTD([TLA], dates[Date])
+)</code></pre>
+
+<h3 id="mtd_tla">MTD_TLA</h3>
+<pre><code>MTD_TLA = 
+COALESCE(
+    SWITCH(
+        TRUE(),
+        -- Case 1: Both Month and Day slicers are "All" or not selected
+        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD(
+                [TLA],
+                DATESBETWEEN(
+                    dates[Date],
+                    DATE(2021, 12, 1),
+                    DATE(2021, 12, 31)
+                )
+            ),
+        -- Case 2: Month is selected, Day is not selected
+        ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD([TLA], dates[Date]),
+        -- Case 3: Month is selected, Day is selected
+        ISFILTERED(dates[Month]) && ISFILTERED(dates[Day]),
+            TOTALMTD([TLA], dates[Date])
+    ),
+0)
+</code></pre>
+
+<h3 id="pmtd_tla">PMTD_TLA</h3>
+<pre><code>PMTD_TLA = 
+COALESCE(
+    SWITCH(
+        TRUE(),
+        -- Case 1: Day is filtered but Month is not filtered
+        ISFILTERED(dates[Day]) && NOT ISFILTERED(dates[Month]), 
+            "N/A",
+        -- Case 2: Both Month and Day are not filtered
+        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]), 
+            TOTALMTD(
+                [TLA],
+                DATESBETWEEN(
+                    dates[Date],
+                    DATE(2021, 11, 1),
+                    DATE(2021, 11, 30)
+                )
+            ),
+        -- Case 3: Selected Month is January
+        SELECTEDVALUE(dates[Month]) = "Jan", 
+            "N/A",
+        -- Case 4: Month is selected
+        ISFILTERED(dates[Month]),
+            CALCULATE(
+                [TLA],
+                FILTER(
+                    PREVIOUSMONTH(dates[Date]),
+                    NOT ISFILTERED(dates[Day]) || DAY(dates[Date]) <= DAY(MAX(dates[Date]))
+                )
+            )
+    ),
+0)
+</code></pre>
+
+<h3 id="mom_tla">MoM_TLA</h3>
+<pre><code>MoM_TLA = 
+IF(
+    [PMTD_TLA] = "N/A" || [PMTD_TLA] = 0,
+    "N/A",
+    ([MTD_TLA] - [PMTD_TLA]) / [PMTD_TLA]
+)
+</code></pre>
+
+<!-- =========================== -->
+<!--     TOTAL FUNDED AMOUNT     -->
+<!-- =========================== -->
+<h2 id="total-funded-amount">Total Funded Amount</h2>
+
+<h3 id="tfa">TFA</h3>
+<pre><code>TFA = SUM(financial_loan[loan_amount])</code></pre>
+
+<h3 id="ytd_tfa">YTD_TFA</h3>
+<pre><code>YTD_TFA = 
+SWITCH(
+    TRUE(),
+    NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+        TOTALYTD([TFA],
+            DATESBETWEEN(
+                dates[Date],
+                DATE(2021, 1, 1),
+                DATE(2021, 12, 31)
+            )
+        ),
+    TOTALYTD([TFA], dates[Date])
+)
+</code></pre>
+
+<h3 id="mtd_tfa">MTD_TFA</h3>
+<pre><code>MTD_TFA = 
+COALESCE(
+    SWITCH(
+        TRUE(),
+        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD(
+                [TFA],
+                DATESBETWEEN(
+                    dates[Date],
+                    DATE(2021, 12, 1),
+                    DATE(2021, 12, 31)
+                )
+            ),
+        ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD([TFA], dates[Date]),
+        ISFILTERED(dates[Month]) && ISFILTERED(dates[Day]),
+            TOTALMTD([TFA], dates[Date])
+    ),
+0)
+</code></pre>
+
+<h3 id="pmtd_tfa">PMTD_TFA</h3>
+<pre><code>PMTD_TFA = 
+COALESCE(
+    SWITCH(
+        TRUE(),
+        ISFILTERED(dates[Day]) && NOT ISFILTERED(dates[Month]), "N/A",
+        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD(
+                [TFA],
+                DATESBETWEEN(
+                    dates[Date],
+                    DATE(2021, 11, 1),
+                    DATE(2021, 11, 30)
+                )
+            ),
+        SELECTEDVALUE(dates[Month]) = "Jan", "N/A",
+        ISFILTERED(dates[Month]),
+            CALCULATE(
+                [TFA],
+                FILTER(
+                    PREVIOUSMONTH(dates[Date]),
+                    NOT ISFILTERED(dates[Day]) || DAY(dates[Date]) <= DAY(MAX(dates[Date]))
+                )
+            )
+    ),
+0)
+</code></pre>
+
+<h3 id="mom_tfa">MoM_TFA</h3>
+<pre><code>MoM_TFA = 
+IF(
+    [PMTD_TFA] = "N/A" || [PMTD_TFA] = 0,
+    "N/A",
+    ([MTD_TFA] - [PMTD_TFA]) / [PMTD_TFA]
+)
+</code></pre>
+
+<!-- =========================== -->
+<!--    TOTAL REPAYED AMOUNT     -->
+<!-- =========================== -->
+<h2 id="total-repayed-amount">Total Repayed Amount</h2>
+
+<h3 id="tra">TRA</h3>
+<pre><code>TRA = SUM(financial_loan[total_payment])</code></pre>
+
+<h3 id="ytd_tra">YTD_TRA</h3>
+<pre><code>YTD_TRA = 
+SWITCH(
+    TRUE(),
+    NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+        TOTALYTD(
+            [TRA],
+            DATESBETWEEN(
+                dates[Date],
+                DATE(2021, 1, 1),
+                DATE(2021, 12, 31)
+            )
+        ),
+    TOTALYTD([TRA], dates[Date])
+)
+</code></pre>
+
+<h3 id="mtd_tra">MTD_TRA</h3>
+<pre><code>MTD_TRA = 
+COALESCE(
+    SWITCH(
+        TRUE(),
+        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD(
+                [TRA],
+                DATESBETWEEN(
+                    dates[Date],
+                    DATE(2021, 12, 1),
+                    DATE(2021, 12, 31)
+                )
+            ),
+        ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD([TRA], dates[Date]),
+        ISFILTERED(dates[Month]) && ISFILTERED(dates[Day]),
+            TOTALMTD([TRA], dates[Date])
+    ),
+0)
+</code></pre>
+
+<h3 id="pmtd_tra">PMTD_TRA</h3>
+<pre><code>PMTD_TRA = 
+COALESCE(
+    SWITCH(
+        TRUE(),
+        ISFILTERED(dates[Day]) && NOT ISFILTERED(dates[Month]), "N/A",
+        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD(
+                [TRA],
+                DATESBETWEEN(
+                    dates[Date],
+                    DATE(2021, 11, 1),
+                    DATE(2021, 11, 30)
+                )
+            ),
+        SELECTEDVALUE(dates[Month]) = "Jan", "N/A",
+        ISFILTERED(dates[Month]),
+            CALCULATE(
+                [TRA],
+                FILTER(
+                    PREVIOUSMONTH(dates[Date]),
+                    NOT ISFILTERED(dates[Day]) || DAY(dates[Date]) <= DAY(MAX(dates[Date]))
+                )
+            )
+    ),
+0)
+</code></pre>
+
+<h3 id="mom_tra">MoM_TRA</h3>
+<pre><code>MoM_TRA = 
+IF(
+    [PMTD_TRA] = "N/A" || [PMTD_TRA] = 0,
+    "N/A",
+    ([MTD_TRA] - [PMTD_TRA]) / [PMTD_TRA]
+)
+</code></pre>
+
+<h3 id="good_loan_repayed">good_loan_repayed</h3>
+<pre><code>good_loan_repayed = CALCULATE([YTD_TRA], financial_loan[Good vs Bad Loan] = "Good Loan")</code></pre>
+
+<h3 id="bad_loan_repayed">bad_loan_repayed</h3>
+<pre><code>bad_loan_repayed = CALCULATE([YTD_TRA], financial_loan[Good vs Bad Loan] = "Bad Loan")</code></pre>
+
+<!-- =========================== -->
+<!-- AVERAGE INTEREST RATE (AIR) -->
+<!-- =========================== -->
+<h2 id="average-interest-rate">Average Interest Rate</h2>
+
+<h3 id="air">AIR</h3>
+<pre><code>AIR = AVERAGE(financial_loan[int_rate])</code></pre>
+
+<h3 id="mtd_air">MTD_AIR</h3>
+<pre><code>MTD_AIR = 
+COALESCE(
+    SWITCH(
+        TRUE(),
+        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD(
+                [AIR],
+                DATESBETWEEN(
+                    dates[Date],
+                    DATE(2021, 12, 1),
+                    DATE(2021, 12, 31)
+                )
+            ),
+        ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD([AIR], dates[Date]),
+        ISFILTERED(dates[Month]) && ISFILTERED(dates[Day]),
+            TOTALMTD([AIR], dates[Date])
+    ),
+0)
+</code></pre>
+
+<h3 id="pmtd_air">PMTD_AIR</h3>
+<pre><code>PMTD_AIR = 
+COALESCE(
+    SWITCH(
+        TRUE(),
+        ISFILTERED(dates[Day]) && NOT ISFILTERED(dates[Month]), "N/A",
+        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD(
+                [AIR],
+                DATESBETWEEN(
+                    dates[Date],
+                    DATE(2021, 11, 1),
+                    DATE(2021, 11, 30)
+                )
+            ),
+        SELECTEDVALUE(dates[Month]) = "Jan", "N/A",
+        ISFILTERED(dates[Month]),
+            CALCULATE(
+                [AIR],
+                FILTER(
+                    PREVIOUSMONTH(dates[Date]),
+                    NOT ISFILTERED(dates[Day]) || DAY(dates[Date]) <= DAY(MAX(dates[Date]))
+                )
+            )
+    ),
+0)
+</code></pre>
+
+<h3 id="mom_air">MoM_AIR</h3>
+<pre><code>MoM_AIR = 
+IF(
+    [PMTD_AIR] = "N/A" || [PMTD_AIR] = 0,
+    "N/A",
+    ([MTD_AIR] - [PMTD_AIR]) / [PMTD_AIR]
+)
+</code></pre>
+
+<!-- =========================== -->
+<!--         AVERAGE DTI        -->
+<!-- =========================== -->
+<h2 id="average-dti">Average DTI</h2>
+
+<h3 id="dti_measure">DTI</h3>
+<pre><code>DTI = AVERAGE(financial_loan[dti])</code></pre>
+
+<h3 id="ytd_dti">YTD_DTI</h3>
+<pre><code>YTD_DTI = 
+SWITCH(
+    TRUE(),
+    NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+        TOTALYTD(
+            [DTI],
+            DATESBETWEEN(
+                dates[Date],
+                DATE(2021, 1, 1),
+                DATE(2021, 12, 31)
+            )
+        ),
+    TOTALYTD([DTI], dates[Date])
+)
+</code></pre>
+
+<h3 id="mtd_dti">MTD_DTI</h3>
+<pre><code>MTD_DTI = 
+COALESCE(
+    SWITCH(
+        TRUE(),
+        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD(
+                [DTI],
+                DATESBETWEEN(
+                    dates[Date],
+                    DATE(2021, 12, 1),
+                    DATE(2021, 12, 31)
+                )
+            ),
+        ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD([DTI], dates[Date]),
+        ISFILTERED(dates[Month]) && ISFILTERED(dates[Day]),
+            TOTALMTD([DTI], dates[Date])
+    ),
+0)
+</code></pre>
+
+<h3 id="pmtd_dti">PMTD_DTI</h3>
+<pre><code>PMTD_DTI = 
+COALESCE(
+    SWITCH(
+        TRUE(),
+        ISFILTERED(dates[Day]) && NOT ISFILTERED(dates[Month]), "N/A",
+        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
+            TOTALMTD(
+                [DTI],
+                DATESBETWEEN(
+                    dates[Date],
+                    DATE(2021, 11, 1),
+                    DATE(2021, 11, 30)
+                )
+            ),
+        SELECTEDVALUE(dates[Month]) = "Jan", "N/A",
+        ISFILTERED(dates[Month]),
+            CALCULATE(
+                [DTI],
+                FILTER(
+                    PREVIOUSMONTH(dates[Date]),
+                    NOT ISFILTERED(dates[Day]) || DAY(dates[Date]) <= DAY(MAX(dates[Date]))
+                )
+            )
+    ),
+0)
+</code></pre>
+
+<h3 id="mom_dti">MoM_DTI</h3>
+<pre><code>MoM_DTI = 
+IF(
+    [PMTD_DTI] = "N/A" || [PMTD_DTI] = 0,
+    "N/A",
+    ([MTD_DTI] - [PMTD_DTI]) / [PMTD_DTI]
+)
+</code></pre>
+
+<!-- =========================== -->
+<!--       DYNAMIC TITLES       -->
+<!-- =========================== -->
+<h2 id="dynamic-titles">Dynamic Titles</h2>
+
+<h3 id="dynamictitle_term">DynamicTitle_term</h3>
+<pre><code>DynamicTitle_term = 
+SWITCH(
+    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
+    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by Term",
+    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by Term",
+    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Term",
+    "Select a Measure"
+)</code></pre>
+
+<h3 id="dynamictitle_state">DynamicTitle_state</h3>
+<pre><code>DynamicTitle_state = 
+SWITCH(
+    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
+    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by State",
+    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by State",
+    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by State",
+    "Select a Measure"
+)</code></pre>
+
+<h3 id="dynamictitle_purpose">DynamicTitle_purpose</h3>
+<pre><code>DynamicTitle_purpose = 
+SWITCH(
+    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
+    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by Purpose",
+    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by Purpose",
+    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Purpose",
+    "Select a Measure"
+)</code></pre>
+
+<h3 id="dynamictitle_month">DynamicTitle_month</h3>
+<pre><code>DynamicTitle_month = 
+SWITCH(
+    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
+    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by Month",
+    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by Month",
+    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Month",
+    "Select a Measure"
+)</code></pre>
+
+<h3 id="dynamictitle_home_own">DynamicTitle_home_own</h3>
+<pre><code>DynamicTitle_home_own = 
+SWITCH(
+    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
+    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by Home Ownership",
+    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by Home Ownership",
+    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Home Ownership",
+    "Select a Measure"
+)</code></pre>
+
+<h3 id="dynamictitle_employment_len">DynamicTitle_employment_len</h3>
+<pre><code>DynamicTitle_employment_len = 
+SWITCH(
+    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
+    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by Employment Length",
+    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by Employment Length",
+    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Employment Length",
+    "Select a Measure"
+)
+</code></pre>
+
+<!-- =========================== -->
+<!--       DATES TABLE          -->
+<!-- =========================== -->
+<h2 id="dates-table">Dates Table</h2>
+
+<h3 id="dates">dates</h3>
+<pre><code>dates = CALENDAR(MIN(financial_loan[issue_date]), MAX(financial_loan[issue_date]))</code></pre>
+
+<h3 id="month">month</h3>
+<pre><code>month = FORMAT(dates[Date], "mmm")</code></pre>
+
+<h3 id="day">day</h3>
+<pre><code>day = DAY(dates[Date])</code></pre>
+
+<h3 id="month_no">month_no</h3>
+<pre><code>month_no = MONTH(dates[Date])</code></pre>
+
+<h3 id="title">title</h3>
+<pre><code>title = SELECTEDVALUE(dates[month])</code></pre>
+
+<!-- =========================== -->
+<!--       SELECT MEASURE       -->
+<!-- =========================== -->
+<h2 id="select-measure">Select Measure</h2>
+
+<h3 id="select_measure">Select Measure</h3>
+<pre><code>Select Measure = {
+    ("TFA", NAMEOF('Total Funded Amount'[YTD_TFA]), 0),
+    ("TLA", NAMEOF('Total Loan Applications'[YTD_TLA]), 1),
+    ("TRA", NAMEOF('Total Repayed Amount'[YTD_TRA]), 2)
+}
+</code></pre>
+
+<h3 id="select_measure_total">Select Measure Total</h3>
+<pre><code>Select Measure Total = 
+SWITCH(
+    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
+    "'Total Funded Amount'[YTD_TFA]", [TFA],
+    "'Total Loan Applications'[YTD_TLA]", [TLA],
+    "'Total Repayed Amount'[YTD_TRA]", [TRA],
+    BLANK()
+)
+</code></pre>
+
+</body>
+</html>
