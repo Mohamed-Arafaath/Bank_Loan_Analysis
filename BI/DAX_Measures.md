@@ -61,12 +61,12 @@
 ## Total Loan Applications
 
 ### TLA
-```DAX
+```msdax
 TLA = COUNT(financial_loan[id])
 ```
 
 ### YTD_TLA
-```DAX
+```msdax
 YTD_TLA = 
 SWITCH(
     TRUE(),
@@ -91,7 +91,7 @@ SWITCH(
 ```
 
 ### MTD_TLA
-```DAX
+```msdax
 MTD_TLA = 
 COALESCE(
     SWITCH(
@@ -118,7 +118,7 @@ COALESCE(
 ```
 
 ### PMTD_TLA
-```DAX
+```msdax
 PMTD_TLA = 
 COALESCE(
     SWITCH(
@@ -154,7 +154,7 @@ COALESCE(
 ```
 
 ### MoM_TLA
-```DAX
+```msdax
 MoM_TLA = 
 IF(
     [PMTD_TLA] = "N/A" || [PMTD_TLA] = 0,
@@ -168,12 +168,12 @@ IF(
 ## Total Funded Amount
 
 ### TFA
-```DAX
+```msdax
 TFA = SUM(financial_loan[loan_amount])
 ```
 
 ### YTD_TFA
-```DAX
+```msdax
 YTD_TFA = 
 SWITCH(
     TRUE(),
@@ -191,7 +191,7 @@ SWITCH(
 ```
 
 ### MTD_TFA
-```DAX
+```msdax
 MTD_TFA = 
 COALESCE(
     SWITCH(
@@ -215,7 +215,7 @@ COALESCE(
 ```
 
 ### PMTD_TFA
-```DAX
+```msdax
 PMTD_TFA = 
 COALESCE(
     SWITCH(
@@ -245,7 +245,7 @@ COALESCE(
 ```
 
 ### MoM_TFA
-```DAX
+```msdax
 MoM_TFA = 
 IF(
     [PMTD_TFA] = "N/A" || [PMTD_TFA] = 0,
@@ -259,12 +259,12 @@ IF(
 ## Total Repayed Amount
 
 ### TRA
-```DAX
+```msdax
 TRA = SUM(financial_loan[total_payment])
 ```
 
 ### YTD_TRA
-```DAX
+```msdax
 YTD_TRA = 
 SWITCH(
     TRUE(),
@@ -282,7 +282,7 @@ SWITCH(
 ```
 
 ### MTD_TRA
-```DAX
+```msdax
 MTD_TRA = 
 COALESCE(
     SWITCH(
@@ -306,7 +306,7 @@ COALESCE(
 ```
 
 ### PMTD_TRA
-```DAX
+```msdax
 PMTD_TRA = 
 COALESCE(
     SWITCH(
@@ -336,7 +336,7 @@ COALESCE(
 ```
 
 ### MoM_TRA
-```DAX
+```msdax
 MoM_TRA = 
 IF(
     [PMTD_TRA] = "N/A" || [PMTD_TRA] = 0,
@@ -346,12 +346,12 @@ IF(
 ```
 
 ### good_loan_repayed
-```DAX
+```msdax
 good_loan_repayed = CALCULATE([YTD_TRA], financial_loan[Good vs Bad Loan] = "Good Loan")
 ```
 
 ### bad_loan_repayed
-```DAX
+```msdax
 bad_loan_repayed = CALCULATE([YTD_TRA], financial_loan[Good vs Bad Loan] = "Bad Loan")
 ```
 
@@ -360,12 +360,12 @@ bad_loan_repayed = CALCULATE([YTD_TRA], financial_loan[Good vs Bad Loan] = "Bad 
 ## Average Interest Rate
 
 ### AIR
-```DAX
+```msdax
 AIR = AVERAGE(financial_loan[int_rate])
 ```
 
 ### MTD_AIR
-```DAX
+```msdax
 MTD_AIR = 
 COALESCE(
     SWITCH(
@@ -389,7 +389,7 @@ COALESCE(
 ```
 
 ### PMTD_AIR
-```DAX
+```msdax
 PMTD_AIR = 
 COALESCE(
     SWITCH(
@@ -419,7 +419,7 @@ COALESCE(
 ```
 
 ### MoM_AIR
-```DAX
+```msdax
 MoM_AIR = 
 IF(
     [PMTD_AIR] = "N/A" || [PMTD_AIR] = 0,
@@ -433,12 +433,12 @@ IF(
 ## Average DTI
 
 ### DTI (Measure)
-```DAX
+```msdax
 DTI = AVERAGE(financial_loan[dti])
 ```
 
 ### YTD_DTI
-```DAX
+```msdax
 YTD_DTI = 
 SWITCH(
     TRUE(),
@@ -456,7 +456,7 @@ SWITCH(
 ```
 
 ### MTD_DTI
-```DAX
+```msdax
 MTD_DTI = 
 COALESCE(
     SWITCH(
@@ -480,7 +480,7 @@ COALESCE(
 ```
 
 ### PMTD_DTI
-```DAX
+```msdax
 PMTD_DTI = 
 COALESCE(
     SWITCH(
@@ -510,7 +510,7 @@ COALESCE(
 ```
 
 ### MoM_DTI
-```DAX
+```msdax
 MoM_DTI = 
 IF(
     [PMTD_DTI] = "N/A" || [PMTD_DTI] = 0,
@@ -524,7 +524,7 @@ IF(
 ## Dynamic Titles
 
 ### DynamicTitle_term
-```DAX
+```msdax
 DynamicTitle_term = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -536,7 +536,7 @@ SWITCH(
 ```
 
 ### DynamicTitle_state
-```DAX
+```msdax
 DynamicTitle_state = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -548,7 +548,7 @@ SWITCH(
 ```
 
 ### DynamicTitle_purpose
-```DAX
+```msdax
 DynamicTitle_purpose = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -560,7 +560,7 @@ SWITCH(
 ```
 
 ### DynamicTitle_month
-```DAX
+```msdax
 DynamicTitle_month = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -572,7 +572,7 @@ SWITCH(
 ```
 
 ### DynamicTitle_home_own
-```DAX
+```msdax
 DynamicTitle_home_own = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -584,7 +584,7 @@ SWITCH(
 ```
 
 ### DynamicTitle_employment_len
-```DAX
+```msdax
 DynamicTitle_employment_len = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
@@ -600,27 +600,27 @@ SWITCH(
 ## Dates Table
 
 ### dates
-```DAX
+```msdax
 dates = CALENDAR(MIN(financial_loan[issue_date]), MAX(financial_loan[issue_date]))
 ```
 
 ### month
-```DAX
+```msdax
 month = FORMAT(dates[Date], "mmm")
 ```
 
 ### day
-```DAX
+```msdax
 day = DAY(dates[Date])
 ```
 
 ### month_no
-```DAX
+```msdax
 month_no = MONTH(dates[Date])
 ```
 
 ### title
-```DAX
+```msdax
 title = SELECTEDVALUE(dates[month])
 ```
 
@@ -629,7 +629,7 @@ title = SELECTEDVALUE(dates[month])
 ## Select Measure
 
 ### Select Measure
-```DAX
+```msdax
 Select Measure = {
     ("TFA", NAMEOF('Total Funded Amount'[YTD_TFA]), 0),
     ("TLA", NAMEOF('Total Loan Applications'[YTD_TLA]), 1),
@@ -638,7 +638,7 @@ Select Measure = {
 ```
 
 ### Select Measure Total
-```DAX
+```msdax
 Select Measure Total = 
 SWITCH(
     SELECTEDVALUE('Select Measure'[Select Measure Fields]),
