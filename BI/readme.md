@@ -68,7 +68,7 @@ This page provides a holistic overview of loan statuses, trends, and distributio
 ### **Overview Page**
 An interactive visualization of trends across months, states, loan purposes, and more.
 
-![Overview Page]([BI/Dashboard/Overview.png](https://github.com/Mohamed-Arafaath/Bank_Loan_Analysis/blob/main/BI/Dashboard/Overview.png))
+![Overview Page](BI/Dashboard/Overview.png)
 
 ### **Details Page**
 A detailed table showing granular data for each loan, with filtering options for all key metrics.
