@@ -1,7 +1,7 @@
 # Bank Loan Analysis
 
 ## Overview
-This repository provides a detailed and structured approach to analyzing bank loan data from 2021. The objective of this project is to evaluate the performance of the bank's lending activities and generate actionable insights using four analytical tools: **SQL**, **Excel**, **Power BI**, and **Tableau**. The same dataset and problem statement are used across all tools to ensure consistency, allowing a comparative view of each tool's capabilities.
+This repository provides a detailed and structured approach to analyzing bank loan data dataset for the year 2021 in the `Dataset/` folder.. The objective of this project is to evaluate the performance of the bank's lending activities and generate actionable insights using four analytical tools: **SQL**, **Excel**, **Power BI**, and **Tableau**. The same dataset and problem statement are used across all tools to ensure consistency, allowing a comparative view of each tool's capabilities.
 
 ## Problem Statement
 The core objective is to create a comprehensive Bank Loan Report that provides insights into key metrics and trends, helping the bank make data-driven decisions and monitor its loan portfolio's health. 
@@ -30,7 +30,7 @@ The repository is organized into the following folders, as depicted in the scree
    - Contains Power BI dashboards providing interactive insights into loan trends, borrower profiles, and regional performance.
 
 2. **`Dataset`**:
-   - Includes the primary dataset `Bank_loan(2021).csv`.
+   - Includes the primary dataset `Bank_loan(2021).csv` in the `Dataset/` folder..
    - The dataset contains variables such as Loan ID, Address State, Employment Length, Loan Status, and more.
 
 3. **`Excel`**:
