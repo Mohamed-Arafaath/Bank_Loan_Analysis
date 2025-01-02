@@ -61,12 +61,12 @@
 ## Total Loan Applications
 
 ### TLA
-```sql
+```vbnet
 TLA = COUNT(financial_loan[id])
 ```
 
 ### YTD_TLA
-```sql
+```vbnet
 YTD_TLA = 
 SWITCH(
     TRUE(),
