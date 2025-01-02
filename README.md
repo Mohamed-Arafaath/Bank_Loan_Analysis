@@ -26,25 +26,26 @@ Additionally, a **Loan Status Grid View** is created to provide a breakdown of m
 ## Project Structure
 The repository is organized into the following folders, as depicted in the screenshot:
 
-1. **`BI`**:
-   - Contains Power BI dashboards providing interactive insights into loan trends, borrower profiles, and regional performance.
+1. **`BI`**, **`Excel`**, **`SQL`**, **`Tableau`**:
+   - Each folder contains the same analysis structure divided into three dashboards:
+     1. **Summary Dashboard**:
+        - Includes metrics like total loan applications, funded amounts, amounts received, average interest rates, and DTI ratios.
+        - Provides MTD and MoM trends for these metrics.
+     2. **Overview Dashboard**:
+        - Visualizes trends and segmentation using various chart types:
+          - Monthly trends (line charts).
+          - Regional analysis (filled maps).
+          - Loan term distribution (donut charts).
+          - Borrower demographics like employment length and loan purpose (bar charts).
+     3. **Details Dashboard**:
+        - Offers a comprehensive grid view of all loan metrics categorized by loan status (Fully Paid, Current, Charged Off).
+        - Designed for detailed insights into borrower profiles and loan performance.
 
 2. **`Dataset`**:
-   - Includes the primary dataset `Bank_loan(2021).csv` in the `Dataset/` folder..
-   - The dataset contains variables such as Loan ID, Address State, Employment Length, Loan Status, and more.
+   - Includes the primary dataset `Bank_loan(2021).csv`.
+   - Provides raw data and terminologies required for all analyses.
 
-3. **`Excel`**:
-   - Contains analytical models and charts created using Excel.
-   - Features include pivot tables, charts, and tabular summaries.
-
-4. **`SQL`**:
-   - SQL scripts designed to query the dataset, compute KPIs, and analyze loan data.
-   - Scripts cover tasks like Good Loan vs. Bad Loan analysis, monthly trends, and borrower segmentation.
-
-5. **`Tableau`**:
-   - Dashboards created using Tableau for advanced visual exploration of loan data and KPIs.
-
-Each folder contains analysis specific to its respective tool, providing multiple perspectives on the same problem.
+Each analytical tool implements these three dashboards, ensuring consistency across SQL, Excel, Power BI, and Tableau, while leveraging the strengths of each tool.
 
 ## Analysis and Insights
 ### Summary Dashboards:
@@ -65,6 +66,9 @@ Each folder contains analysis specific to its respective tool, providing multipl
 - **Monthly Trends**: Track trends in applications, funding, and repayments over time.
 - **Regional Analysis**: Explore metrics by state.
 - **Loan Term and Purpose**: Visualize distributions by loan term and purpose categories.
+
+### Comparative View:
+By maintaining the same analysis structure across tools, this repository demonstrates the versatility of SQL, Excel, Power BI, and Tableau for solving real-world data problems.
 
 ## How to Use
 1. Clone the repository:
