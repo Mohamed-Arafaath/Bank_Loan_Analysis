@@ -58,7 +58,7 @@ Each measure dynamically adapts to selected slicers, offering **real-time insigh
 
 ---
 
-## 📊 Screenshots of the Dashboard
+## 📊 Dashboard
 
 ### **Summary Page**
 This page provides a holistic overview of loan statuses, trends, and distribution of Good and Bad Loans.
