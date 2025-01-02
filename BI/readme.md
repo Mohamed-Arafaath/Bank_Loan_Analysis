@@ -63,7 +63,7 @@ Each measure dynamically adapts to selected slicers, offering **real-time insigh
 ### **Summary Page**
 This page provides a holistic overview of loan statuses, trends, and distribution of Good and Bad Loans.
 
-![Summary Page]([BI/Dashboard/Summary.png](https://github.com/Mohamed-Arafaath/Bank_Loan_Analysis/blob/main/BI/Dashboard/Summary.png))
+![Summary Page](Dashboard/Summary.png)
 
 ### **Overview Page**
 An interactive visualization of trends across months, states, loan purposes, and more.
@@ -73,7 +73,7 @@ An interactive visualization of trends across months, states, loan purposes, and
 ### **Details Page**
 A detailed table showing granular data for each loan, with filtering options for all key metrics.
 
-![Details Page]([BI/Dashboard/Details.png](https://github.com/Mohamed-Arafaath/Bank_Loan_Analysis/blob/main/BI/Dashboard/Details.png))
+![Details Page](Dashboard/Details.png)
 
 ---
 
