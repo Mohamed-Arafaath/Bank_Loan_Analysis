@@ -4,7 +4,7 @@
 This repository includes a dataset used for building dashboards and conducting data analysis across multiple tools, including SQL, Excel, Power BI, and Tableau. The dataset provides comprehensive details about bank loans and borrower profiles, enabling in-depth analysis and visualization.
 
 ## Dataset Details
-The dataset contains anonymized records of bank loans, capturing a variety of features that are essential for analyzing loan performance and borrower behavior. The dataset is located in the `datasets/` folder as `Bank_loan(2021).csv`.
+The dataset contains anonymized records of bank loans for the year 2021, capturing a variety of features that are essential for analyzing loan performance and borrower behavior. The dataset is located in the `datasets/` folder as `Bank_loan(2021).csv`.
 
 ### Key Features
 Below are the key features included in the dataset:
