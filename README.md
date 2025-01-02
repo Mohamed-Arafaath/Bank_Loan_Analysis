@@ -26,7 +26,7 @@ Additionally, a **Loan Status Grid View** is created to provide a breakdown of m
 ## Project Structure
 The repository is organized into the following folders:
 
-1. **`BI`**, **`Excel`**, **`SQL`**, **`Tableau`**:
+1. **`SQL`**, **`Excel`**, **`POWER BI`** , **`Tableau`**:
    - Each folder contains the same analysis structure divided into three dashboards:
      1. **Summary Dashboard**:
         - Includes metrics like total loan applications, funded amounts, amounts received, average interest rates, and DTI ratios AS Year-to-Date (YTD).
