@@ -38,9 +38,9 @@ The following measures dynamically compute **YTD**, **MTD**, **PMTD**, and **MoM
 
 ### **Major KPIs**:
 1. **Total Loan Applications (TLA)**:
-   - **YTD_TLA**: Total applications from Jan 1, 2021, to Dec 31, 2021.
-   - **MTD_TLA**: Applications in the current month.
-   - **PMTD_TLA**: Applications in the previous month.
+   - **YTD_TLA**: Total applications from start of the year till date.
+   - **MTD_TLA**: Applications from start of the current month till date.
+   - **PMTD_TLA**: Applications from start of the previous month till previous month's current date.
    - **MoM_TLA**: Month-over-Month growth rate.
 
 2. **Total Funded Amount (TFA)**:
