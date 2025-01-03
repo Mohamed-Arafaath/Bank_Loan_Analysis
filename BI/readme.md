@@ -59,6 +59,8 @@ The following measures dynamically compute **YTD**, **MTD**, **PMTD**, and **MoM
    - **YTD_DTI**: Average DTI across all loans for the year.
    - **MTD_DTI**, **PMTD_DTI**, **MoM_DTI**: Derived monthly metrics.
 
+For detailed DAX formulas used in this dashboard, refer to the [`DAX_Measures.md`](./DAX_Measures.md) file in this repository.
+
 ---
 
 ## 📊 Dashboard Analysis
@@ -152,8 +154,6 @@ This Power BI dashboard mirrors the insights derived from SQL analysis conducted
 
 - **Monthly Trends**:
    - Steady growth observed in SQL aligns with the Power BI time-series trend.
-
-For detailed DAX formulas used in this dashboard, refer to the DAX_Measures.md file in this repository.
 
 ---
 
