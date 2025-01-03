@@ -62,5 +62,5 @@ The SQL queries serve as a robust analytical foundation for the Power BI dashboa
 
 ## 📧 Contact
 
-**Author**: [Mohamed Arafaath]([[https://github.com/YourGitHubUsername](https://github.com/Mohamed-Arafaath)](https://www.linkedin.com/in/mohamed-arafaath/))  
+**Author**: [Mohamed Arafaath](https://www.linkedin.com/in/mohamed-arafaath/)
 **Email**: [mohamed_arafaath@outlook.com]
