@@ -1,6 +1,6 @@
 # 🏦 Bank Loan Analysis Dashboard
 
-An in-depth [`Power BI dashboard`](..\BI\Dashboard\BI_file.pbix) designed to analyze bank loan data from January 1, 2021, to December 31, 2021. This project utilizes advanced **DAX (Data Analysis Expressions)** measures to dynamically compute and present key metrics. The dashboard provides actionable insights into total loan applications, funded amounts, repaid amounts, average interest rates, and debt-to-income ratios (DTI), enabling stakeholders to make data-driven decisions.
+An in-depth [`Power BI dashboard`](./Dashboard/BI_file.pbix) designed to analyze bank loan data from January 1, 2021, to December 31, 2021. This project utilizes advanced **DAX (Data Analysis Expressions)** measures to dynamically compute and present key metrics. The dashboard provides actionable insights into total loan applications, funded amounts, repaid amounts, average interest rates, and debt-to-income ratios (DTI), enabling stakeholders to make data-driven decisions.
 
 ---
 
