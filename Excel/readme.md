@@ -2,6 +2,8 @@
 
 This folder contains the Excel dashboard and related resources for analyzing bank loan data. The dashboard provides insights into loan performance, trends, and key performance indicators (KPIs) based on historical data.
 
+---
+
 ## Contents
 
 - **Excel_Dashboard.xlsx**: The main Excel file containing the dashboard with dynamic charts and tables.
@@ -10,6 +12,8 @@ This folder contains the Excel dashboard and related resources for analyzing ban
   - `Details.png`: A detailed view of loan statistics and breakdowns.
   - `Summary.png`: Summary-level insights from the dashboard.
 - **KPI_Design_Sheet**: This sheet in `Excel_Dashboard.xlsx` outlining the design of KPIs and metrics used in the dashboard.
+
+---
 
 ## Features
 
@@ -40,11 +44,15 @@ The Excel dashboard includes the following features:
 ### Dynamic Filters and Slicers
 - Interactive slicers to filter data by loan status, month, and other dimensions.
 
+---
+
 ## How to Use
 1. **Open the Dashboard**: Download and open `Excel_Dashboard.xlsx` in Microsoft Excel.
 2. **Navigate the Sheets**: Explore different sheets to view various visualizations and metrics.
 3. **Use Filters**: Utilize slicers and dropdowns to dynamically filter and analyze data.
 4. **Refer to Screenshots**: Use the screenshots in the `Dashboard` folder for guidance on using the dashboard.
+
+---
 
 ## Data Sources
 The analysis is based on anonymized historical loan data. Key columns include:
@@ -54,7 +62,18 @@ The analysis is based on anonymized historical loan data. Key columns include:
 - Loan Status (e.g., Fully Paid, Charged Off)
 - Borrower Details (e.g., employment length, home ownership)
 
+---
+
 ## Methodology
 1. **Data Preparation**: The raw data was cleaned and transformed to calculate key metrics.
 2. **Dashboard Design**: KPIs and trends were visualized using Excel's built-in charting and pivot table features.
 3. **KPI Documentation**: Refer to `KPI_Design_Sheet` in `Excel_Dashboard.xlsx` for detailed KPI definitions and calculations.
+
+---
+
+## 📧 Contact
+
+For any questions or feedback, feel free to reach out:
+
+- **Author**: [Mohamed Arafaath](https://www.linkedin.com/in/mohamed-arafaath/)
+- **Email**: mohamed_arafaath@outlook.com
