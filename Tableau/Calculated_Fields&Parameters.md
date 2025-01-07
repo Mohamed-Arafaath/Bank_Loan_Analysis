@@ -8,6 +8,9 @@
   - [PMTD_TLA](#pmtd_tla)
   - [MoM_TLA](#mom_tla)
   - [Good Loan Count](#good-loan-count)
+  - [Good Loan%](good-loan%)
+  - [Bad Loan Count](#bad-loan-count)
+  - [Bad Loan%](bad-loan%)
 
 - [Total Funded Amount](#total-funded-amount)
   - [TFA](#tfa)
