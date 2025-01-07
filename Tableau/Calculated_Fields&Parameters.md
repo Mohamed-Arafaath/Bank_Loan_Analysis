@@ -1,5 +1,5 @@
 
-# Calculated Fields
+# Calculated Fields and Parameters
 
 ## Table of Contents
 - [Total Loan Applications](#total-loan-applications)
@@ -42,27 +42,8 @@
 
 ---
 
-# Calculated Parameters
-## Table of Contents
-
-- [Dynamic Titles](#dynamic-titles)
-  - [DynamicTitle_term](#dynamictitle_term)
-  - [DynamicTitle_state](#dynamictitle_state)
-  - [DynamicTitle_purpose](#dynamictitle_purpose)
-  - [DynamicTitle_month](#dynamictitle_month)
-  - [DynamicTitle_home_own](#dynamictitle_home_own)
-  - [DynamicTitle_employment_len](#dynamictitle_employment_len)
-
-- [Dates Table](#dates-table)
-  - [dates](#dates)
-  - [month](#month)
-  - [day](#day)
-  - [month_no](#month_no)
-  - [title](#title)
-
-- [Select Measure](#select-measure)
-  - [Select Measure](#select_measure)
-  - [Select Measure Total](#select_measure_total)
+- [Calculated Parameter](#dynamic-measure-for-calculated-parameter-(select-Measure))
+  - [Dynamic Measure](#dynamic-measure)
 
 ---
 
@@ -213,71 +194,32 @@ bad_loan_repayed = sum(if [Good vs Bad Loan] ="Bad Loan" then [Total Payment] en
 
 ### AIR
 ```
-AIR = AVERAGE(financial_loan[int_rate])
+AIR = AVG([Int Rate])
 ```
 
 ### MTD_AIR
 ```
 MTD_AIR = 
-COALESCE(
-    SWITCH(
-        TRUE(),
-        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
-            TOTALMTD(
-                [AIR],
-                DATESBETWEEN(
-                    dates[Date],
-                    DATE(2021, 12, 1),
-                    DATE(2021, 12, 31)
-                )
-            ),
-        ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
-            TOTALMTD([AIR], dates[Date]),
-        ISFILTERED(dates[Month]) && ISFILTERED(dates[Day]),
-            TOTALMTD([AIR], dates[Date])
-    ),
-    0
-)
+AVG(IF 
+DATEDIFF('month',[Issue Date], {max([Issue Date])}) = 0
+THEN
+[Int Rate]
+end)
 ```
 
 ### PMTD_AIR
 ```
 PMTD_AIR = 
-COALESCE(
-    SWITCH(
-        TRUE(),
-        ISFILTERED(dates[Day]) && NOT ISFILTERED(dates[Month]), "N/A",
-        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
-            TOTALMTD(
-                [AIR],
-                DATESBETWEEN(
-                    dates[Date],
-                    DATE(2021, 11, 1),
-                    DATE(2021, 11, 30)
-                )
-            ),
-        SELECTEDVALUE(dates[Month]) = "Jan", "N/A",
-        ISFILTERED(dates[Month]),
-            CALCULATE(
-                [AIR],
-                FILTER(
-                    PREVIOUSMONTH(dates[Date]),
-                    NOT ISFILTERED(dates[Day]) || DAY(dates[Date]) <= DAY(MAX(dates[Date]))
-                )
-            )
-    ),
-    0
-)
+AVG(IF 
+DATEDIFF('month',[Issue Date], {max([Issue Date])}) = 1
+THEN
+[Int Rate]
+end)
 ```
 
 ### MoM_AIR
 ```
-MoM_AIR = 
-IF(
-    [PMTD_AIR] = "N/A" || [PMTD_AIR] = 0,
-    "N/A",
-    ([MTD_AIR] - [PMTD_AIR]) / [PMTD_AIR]
-)
+MoM_AIR = ([MTD_AIR]-[PMTD_AIR])/[PMTD_AIR]
 ```
 
 ---
@@ -286,217 +228,44 @@ IF(
 
 ### DTI (Measure)
 ```
-DTI = AVERAGE(financial_loan[dti])
-```
-
-### YTD_DTI
-```
-YTD_DTI = 
-SWITCH(
-    TRUE(),
-    NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
-        TOTALYTD(
-            [DTI],
-            DATESBETWEEN(
-                dates[Date],
-                DATE(2021, 1, 1),
-                DATE(2021, 12, 31)
-            )
-        ),
-    TOTALYTD([DTI], dates[Date])
-)
+DTI = AVG([Dti])
 ```
 
 ### MTD_DTI
 ```
 MTD_DTI = 
-COALESCE(
-    SWITCH(
-        TRUE(),
-        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
-            TOTALMTD(
-                [DTI],
-                DATESBETWEEN(
-                    dates[Date],
-                    DATE(2021, 12, 1),
-                    DATE(2021, 12, 31)
-                )
-            ),
-        ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
-            TOTALMTD([DTI], dates[Date]),
-        ISFILTERED(dates[Month]) && ISFILTERED(dates[Day]),
-            TOTALMTD([DTI], dates[Date])
-    ),
-    0
-)
+AVG(IF 
+DATEDIFF('month',[Issue Date], {max([Issue Date])}) = 0
+THEN
+[Dti]
+end)
 ```
 
 ### PMTD_DTI
 ```
 PMTD_DTI = 
-COALESCE(
-    SWITCH(
-        TRUE(),
-        ISFILTERED(dates[Day]) && NOT ISFILTERED(dates[Month]), "N/A",
-        NOT ISFILTERED(dates[Month]) && NOT ISFILTERED(dates[Day]),
-            TOTALMTD(
-                [DTI],
-                DATESBETWEEN(
-                    dates[Date],
-                    DATE(2021, 11, 1),
-                    DATE(2021, 11, 30)
-                )
-            ),
-        SELECTEDVALUE(dates[Month]) = "Jan", "N/A",
-        ISFILTERED(dates[Month]),
-            CALCULATE(
-                [DTI],
-                FILTER(
-                    PREVIOUSMONTH(dates[Date]),
-                    NOT ISFILTERED(dates[Day]) || DAY(dates[Date]) <= DAY(MAX(dates[Date]))
-                )
-            )
-    ),
-    0
-)
+AVG(IF 
+DATEDIFF('month',[Issue Date], {max([Issue Date])}) = 1
+THEN
+[Dti]
+end)
 ```
 
 ### MoM_DTI
 ```
-MoM_DTI = 
-IF(
-    [PMTD_DTI] = "N/A" || [PMTD_DTI] = 0,
-    "N/A",
-    ([MTD_DTI] - [PMTD_DTI]) / [PMTD_DTI]
-)
+MoM_DTI = ([MTD_DTI]-[PMTD_DTI])/[PMTD_DTI]
 ```
 
 ---
 
-## Dynamic Titles
+## Dynamic Measure for Calculated Parameter (Select Measure)
 
-### DynamicTitle_term
+### Dynamic Measure
 ```
-DynamicTitle_term = 
-SWITCH(
-    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
-    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by Term",
-    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by Term",
-    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Term",
-    "Select a Measure"
-)
+Dynamic Measure =
+if [Select Measure] = "Total Loan Applications" then [TLA]
+ELSEIF [Select Measure] = "Total Funded Amount" then [TFA]
+else [TRA]
+end
 ```
-
-### DynamicTitle_state
-```
-DynamicTitle_state = 
-SWITCH(
-    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
-    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by State",
-    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by State",
-    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by State",
-    "Select a Measure"
-)
-```
-
-### DynamicTitle_purpose
-```
-DynamicTitle_purpose = 
-SWITCH(
-    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
-    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by Purpose",
-    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by Purpose",
-    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Purpose",
-    "Select a Measure"
-)
-```
-
-### DynamicTitle_month
-```
-DynamicTitle_month = 
-SWITCH(
-    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
-    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by Month",
-    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by Month",
-    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Month",
-    "Select a Measure"
-)
-```
-
-### DynamicTitle_home_own
-```
-DynamicTitle_home_own = 
-SWITCH(
-    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
-    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by Home Ownership",
-    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by Home Ownership",
-    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Home Ownership",
-    "Select a Measure"
-)
-```
-
-### DynamicTitle_employment_len
-```
-DynamicTitle_employment_len = 
-SWITCH(
-    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
-    "'Total Funded Amount' [YTD_TFA]", "Total Funded Amount by Employment Length",
-    "'Total Loan Applications'[YTD_TLA]", "Total Loan Applications by Employment Length",
-    "'Total Repayed Amount'[YTD_TRA]", "Total Repaid Amount by Employment Length",
-    "Select a Measure"
-)
-```
-
 ---
-
-## Dates Table
-
-### dates
-```
-dates = CALENDAR(MIN(financial_loan[issue_date]), MAX(financial_loan[issue_date]))
-```
-
-### month
-```
-month = FORMAT(dates[Date], "mmm")
-```
-
-### day
-```
-day = DAY(dates[Date])
-```
-
-### month_no
-```
-month_no = MONTH(dates[Date])
-```
-
-### title
-```
-title = SELECTEDVALUE(dates[month])
-```
-
----
-
-## Select Measure
-
-### Select Measure
-```
-Select Measure = {
-    ("TFA", NAMEOF('Total Funded Amount'[YTD_TFA]), 0),
-    ("TLA", NAMEOF('Total Loan Applications'[YTD_TLA]), 1),
-    ("TRA", NAMEOF('Total Repayed Amount'[YTD_TRA]), 2)
-}
-```
-
-### Select Measure Total
-```
-Select Measure Total = 
-SWITCH(
-    SELECTEDVALUE('Select Measure'[Select Measure Fields]),
-    "'Total Funded Amount'[YTD_TFA]", [TFA],
-    "'Total Loan Applications'[YTD_TLA]", [TLA],
-    "'Total Repayed Amount'[YTD_TRA]", [TRA],
-    BLANK()
-)
-```
