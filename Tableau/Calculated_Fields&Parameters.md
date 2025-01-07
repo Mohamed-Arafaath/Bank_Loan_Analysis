@@ -8,9 +8,9 @@
   - [PMTD_TLA](#pmtd_tla)
   - [MoM_TLA](#mom_tla)
   - [Good Loan Count](#good-loan-count)
-  - [Good Loan%](good-loan%)
+  - [Good Loan%](good-loan-percentage)
   - [Bad Loan Count](#bad-loan-count)
-  - [Bad Loan%](bad-loan%)
+  - [Bad Loan%](bad-loan-percentage)
 
 - [Total Funded Amount](#total-funded-amount)
   - [TFA](#tfa)
@@ -102,7 +102,7 @@ MoM_TLA =
 Good Loan Count = count(if [Good vs Bad Loan] ="Good Loan" then 1 end)
 ```
 
-### Good Loan%
+### Good Loan Percentage
 ```
 Good Loan% = [Good Loan Count] / [TLA]
 ```
@@ -112,7 +112,7 @@ Good Loan% = [Good Loan Count] / [TLA]
 Bad Loan Count = count(if [Good vs Bad Loan] ="Bad Loan" then 1 end)
 ```
 
-### Bad Loan%
+### Bad Loan Percentage
 ```
 Bad Loan% = [Bad Loan Count]/[TLA]
 ```
