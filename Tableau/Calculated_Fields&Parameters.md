@@ -19,7 +19,7 @@
   - [good_loan_funded](#good_loan_funded)
   - [bad_loan_funded](#bad_loan_funded)
 
-- [Total Repayed Amount](#total-repayed-amount)
+- [Total Repaid Amount](#total-repaid-amount)
   - [TRA](#tra)
   - [MTD_TRA](#mtd_tra)
   - [PMTD_TRA](#pmtd_tra)
