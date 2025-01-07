@@ -165,7 +165,8 @@ For further details or questions, feel free to raise an issue or contact me.
 
 ## 📧 Contact
 
-**Author**: [Mohamed Arafaath](https://www.linkedin.com/in/mohamed-arafaath/)
-**Email**: [mohamed_arafaath@outlook.com]
+For any questions or feedback, feel free to reach out:
 
+- **Author**: [Mohamed Arafaath](https://www.linkedin.com/in/mohamed-arafaath/)
+- **Email**: mohamed_arafaath@outlook.com
 
