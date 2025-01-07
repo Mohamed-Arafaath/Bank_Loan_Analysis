@@ -104,7 +104,7 @@ Good Loan Count = count(if [Good vs Bad Loan] ="Good Loan" then 1 end)
 
 ### Good Loan Percentage
 ```
-Good Loan% = [Good Loan Count] / [TLA]
+Good Loan Percentage = [Good Loan Count] / [TLA]
 ```
 
 ### Bad Loan Count
@@ -114,7 +114,7 @@ Bad Loan Count = count(if [Good vs Bad Loan] ="Bad Loan" then 1 end)
 
 ### Bad Loan Percentage
 ```
-Bad Loan% = [Bad Loan Count]/[TLA]
+Bad Loan Percentage = [Bad Loan Count]/[TLA]
 ```
 
 ---
