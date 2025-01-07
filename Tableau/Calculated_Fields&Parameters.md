@@ -1,4 +1,3 @@
-
 # Calculated Fields and Parameters
 
 ## Table of Contents
@@ -39,8 +38,6 @@
   - [MTD_DTI](#mtd_dti)
   - [PMTD_DTI](#pmtd_dti)
   - [MoM_DTI](#mom_dti)
-
----
 
 - [Calculated Parameter](#dynamic-measure-for-calculated-parameter-(select-Measure))
   - [Dynamic Measure](#dynamic-measure)
