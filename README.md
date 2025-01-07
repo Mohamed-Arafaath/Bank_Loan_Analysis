@@ -4,6 +4,8 @@
 ## Overview
 This repository provides a detailed and structured approach to analyzing bank loan data for the year 2021. The objective of this project is to evaluate the performance of the bank's lending activities and generate actionable insights using four analytical tools: **SQL**, **Excel**, **Power BI**, and **Tableau**. The same dataset and problem statement are used across all tools to ensure consistency, allowing a comparative view of each tool's capabilities.
 
+---
+
 ## Problem Statement
 The core objective is to create a comprehensive Bank Loan Report that provides insights into key metrics and trends, helping the bank make data-driven decisions and monitor its loan portfolio's health. 
 
@@ -23,6 +25,8 @@ To evaluate loan portfolio quality, the data is categorized into:
   - Metrics include percentage, applications, funded amounts, and total received amounts.
 
 Additionally, a **Loan Status Grid View** is created to provide a breakdown of metrics such as total applications, funded amounts, received amounts, interest rates, and DTI ratios by loan status.
+
+---
 
 ## Project Structure
 The repository is organized into the following folders:
@@ -48,6 +52,8 @@ The repository is organized into the following folders:
 
 Each analytical tool implements these three dashboards, ensuring consistency across SQL, Excel, Power BI, and Tableau, while leveraging the strengths of each tool.
 
+---
+
 ## Analysis and Insights
 ### Summary Dashboards:
 - **Applications, Funding, and Repayments**:
@@ -70,6 +76,8 @@ Each analytical tool implements these three dashboards, ensuring consistency acr
 
 ### Comparative View:
 By maintaining the same analysis structure across tools, this repository demonstrates the versatility of SQL, Excel, Power BI, and Tableau for solving real-world data problems.
+
+---
 
 ## How to Use
 1. Clone the repository:
