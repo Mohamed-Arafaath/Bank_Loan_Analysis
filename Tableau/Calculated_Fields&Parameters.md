@@ -17,14 +17,16 @@
   - [MTD_TFA](#mtd_tfa)
   - [PMTD_TFA](#pmtd_tfa)
   - [MoM_TFA](#mom_tfa)
+  - [good_loan_funded](#good_loan_funded)
+  - [bad_loan_funded](#bad_loan_funded)
 
 - [Total Repayed Amount](#total-repayed-amount)
   - [TRA](#tra)
   - [MTD_TRA](#mtd_tra)
   - [PMTD_TRA](#pmtd_tra)
   - [MoM_TRA](#mom_tra)
-  - [good_loan_repayed](#good_loan_repayed)
-  - [bad_loan_repayed](#bad_loan_repayed)
+  - [good_loan_repaid](#good_loan_repaid)
+  - [bad_loan_repaid](#bad_loan_repaid)
 
 - [Average Interest Rate](#average-interest-rate)
   - [AIR](#air)
