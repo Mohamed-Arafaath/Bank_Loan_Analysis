@@ -82,4 +82,13 @@ By maintaining the same analysis structure across tools, this repository demonst
 3. Refer to the `Dataset` folder for the raw data file (`Bank_loan(2021).csv`).
 
 4. View insights for each analytical tool in its respective folder.
+
+---
+
+## 📧 Contact
+
+For any questions or feedback, feel free to reach out:
+
+- **Author**: [Mohamed Arafaath](https://www.linkedin.com/in/mohamed-arafaath/)
+- **Email**: mohamed_arafaath@outlook.com
    
