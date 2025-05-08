@@ -68,7 +68,6 @@ Tabular view of loan-level data.
 1. **Open the Dashboard**: Download and open `Excel_Dashboard.xlsx` in Microsoft Excel.
 2. **Navigate the Sheets**: Explore different sheets to view various visualizations and metrics.
 3. **Use Filters**: Utilize slicers and dropdowns to dynamically filter and analyze data.
-4. **Refer to Screenshots**: Use the screenshots in the `Dashboard` folder for guidance on using the dashboard.
 
 ---
 
