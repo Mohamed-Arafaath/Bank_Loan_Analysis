@@ -6,7 +6,7 @@ The `SQL` folder contains two query files that form the backbone of the analysis
 
 ### 📋 Dashboard Overview
 
-1. **1.Summary_Page.sql**:
+**1.Summary_Page.sql**:
    - **Purpose**: This query file provides data aggregation and key performance indicators (KPIs) that align with the **Summary Page** of the Power BI dashboard.
    - **Key Insights**:
      - Total Loan Applications, Funded Amount, and Repaid Amounts.
@@ -16,7 +16,7 @@ The `SQL` folder contains two query files that form the backbone of the analysis
      - The SQL logic here is directly used to calculate **YTD metrics** for Total Loan Applications (TLA), Total Funded Amount (TFA), Total Repaid Amount (TRA), and other key metrics seen at the top of the **Summary Page**.
      - These metrics also serve as a basis for the dynamic slicers used in the Power BI model for Month-to-Date (MTD), Previous Month-to-Date (PMTD), and Month-over-Month (MoM) comparisons.
 
-2. **2.Overview_3.GridView.sql**:
+**2.Overview_3.GridView.sql**:
    - **Purpose**: This query file focuses on granular and trend-based data analysis for the **Overview** and **Details Pages** of the Power BI dashboard.
    - **Key Insights**:
      - Time-series analysis of loan applications across months.
