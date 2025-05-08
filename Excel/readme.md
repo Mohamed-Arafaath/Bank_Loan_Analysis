@@ -43,6 +43,24 @@ The Excel dashboard includes the following features:
 
 ### Dynamic Filters and Slicers
 - Interactive slicers to filter data by loan status, month, and other dimensions.
+---
+
+## 📊 Screenshots of the Dashboard
+
+### **Summary Page**
+This page provides a comprehensive overview of loan statuses, trends, and Good vs Bad Loans.
+
+![Summary Page](Dashboard/Screenshots/Summary.png)
+
+### **Overview Page**
+Visualizes loan trends across time, geography, purpose, and other dimensions.
+
+![Overview Page](Dashboard/Screenshots/Overview.png)
+
+### **Details Page**
+Tabular view of loan-level data with advanced filtering options.
+
+![Details Page](Dashboard/Screenshots/Details.png)
 
 ---
 
