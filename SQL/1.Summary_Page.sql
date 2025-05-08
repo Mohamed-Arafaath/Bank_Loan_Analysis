@@ -17,7 +17,7 @@ WHERE issue_date <= '2021-12-31' --GETDATE()
 --generalized dynamic query (replace date with GETDATE())
 SELECT COUNT(id) AS total_loan_applications 
 FROM bank_loan
-WHERE issue_date <= dateadd(month, -1, '2021-12-25')  --GETDATE()
+WHERE issue_date <= dateadd(month, -1, '2021-12-31')  --GETDATE()
 	and issue_date >=  dateadd(month, -1, dateadd(month, datediff(month, 0, '2021-12-31'), 0)) --getdate()
 
 
@@ -36,7 +36,7 @@ WHERE issue_date <= '2021-12-31' --GETDATE()
 --generalized dynamic query (replace date with GETDATE())
 SELECT sum(loan_amount) as total_loan_funded
 FROM bank_loan
-WHERE issue_date <= dateadd(month, -1, '2021-12-25')  --GETDATE()
+WHERE issue_date <= dateadd(month, -1, '2021-12-31')  --GETDATE()
 	and issue_date >=  dateadd(month, -1, dateadd(month, datediff(month, 0, '2021-12-31'), 0)) --getdate()
 
 
@@ -55,7 +55,7 @@ WHERE issue_date <= '2021-12-31' --GETDATE()
 --generalized dynamic query (replace date with GETDATE())
 SELECT sum(total_payment) as total_loan_repayed
 FROM bank_loan
-WHERE issue_date <= dateadd(month, -1, '2021-12-25')  --GETDATE()
+WHERE issue_date <= dateadd(month, -1, '2021-12-31')  --GETDATE()
 	and issue_date >=  dateadd(month, -1, dateadd(month, datediff(month, 0, '2021-12-31'), 0)) --getdate()
 
 
@@ -74,7 +74,7 @@ WHERE issue_date <= '2021-12-31' --GETDATE()
 --generalized dynamic query (replace date with GETDATE())
 SELECT round(avg(int_rate)*100,4) as avg_interest_rate
 FROM bank_loan
-WHERE issue_date <= dateadd(month, -1, '2021-12-25')  --GETDATE()
+WHERE issue_date <= dateadd(month, -1, '2021-12-31')  --GETDATE()
 	and issue_date >=  dateadd(month, -1, dateadd(month, datediff(month, 0, '2021-12-31'), 0)) --getdate()
 
 
@@ -93,7 +93,7 @@ WHERE issue_date <= '2021-12-31' --GETDATE()
 --generalized dynamic query (replace date with GETDATE())
 SELECT round(avg(dti)*100,4) as avg_dti
 FROM bank_loan
-WHERE issue_date <= dateadd(month, -1, '2021-12-25')  --GETDATE()
+WHERE issue_date <= dateadd(month, -1, '2021-12-31')  --GETDATE()
 	and issue_date >=  dateadd(month, -1, dateadd(month, datediff(month, 0, '2021-12-31'), 0)) --getdate()
 
 
