@@ -58,7 +58,7 @@ Visualizes loan trends across time, geography, purpose, and other dimensions.
 ![Overview Page](Dashboard/Screenshots/Overview.png)
 
 ### **Details Page**
-Tabular view of loan-level data with advanced filtering options.
+Tabular view of loan-level data.
 
 ![Details Page](Dashboard/Screenshots/Details.png)
 
